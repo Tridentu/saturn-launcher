@@ -1,0 +1,32 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "tridentuorg@protnmail.com",
+                "Name": "Tridentu Group",
+                "Name[x-test]": "xxTridentu Groupxx"
+            }
+        ],
+        "Category": "Application Launchers",
+        "Description": "The Tridentu-RK version of the Kickoff Launcher.",
+        "EnabledByDefault": true,
+        "Icon": "/usr/share/distro-data/tridentur.png",
+        "Id": "io.github.tridentu.saturn",
+        "License": "GPL-2.0+",
+        "Name": "Saturn Launcher",
+        "Name[x-test]": "xxSaturn Launcherxx",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "0.1",
+        "Website": "https://tridentu.github.io/saturn-launcher"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/Saturn.qml",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.launchermenu"
+    ],
+    "X-Plasma-RequiredExtensions": [
+        "LaunchApp"
+    ]
+}

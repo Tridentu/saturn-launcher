@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Saturn Launcher
+Comment=The Tridentu-RK version of the Kickoff Launcher.
+Type=Service
+Icon=/usr/share/distro-data/tridentur.png
+
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=io.github.tridentu.saturn
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=tridentu.github.io/saturn-launcher
+X-KDE-ServiceTypes=Plasma/Applet
+X-KDE-PluginInfo-Category=Application Launchers
+X-KDE-PluginInfo-Email=tridentuorg@protnmail.com
+X-KDE-PluginInfo-Author=Tridentu Group
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/Saturn.qml
+X-Plasma-RequiredExtensions=LaunchApp
+X-Plasma-Provides=org.kde.plasma.launchermenu
