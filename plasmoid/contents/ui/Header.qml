@@ -26,7 +26,7 @@ PlasmaExtras.PlasmoidHeading {
     property Item avatar: avatar
     property real preferredNameAndIconWidth: 0
 
-    contentHeight: Math.max(searchField.implicitHeight, configureButton.implicitHeight)
+    contentHeight: Math.max(searchField.implicitHeight, configureButton.implicitHeight) * 2.5
 
     leftPadding: 0
     rightPadding: 0
@@ -43,231 +43,244 @@ PlasmaExtras.PlasmoidHeading {
     }
 
     spacing: plasmoid.rootItem.backgroundMetrics.spacing
-
-    RowLayout {
-        id: nameAndIcon
-        spacing: root.spacing
-        anchors.left: parent.left
-        height: parent.height
-        width: root.preferredNameAndIconWidth
-
-        PC3.RoundButton {
-            id: avatar
-            visible: KQuickAddons.KCMShell.authorize("kcm_users.desktop").length > 0
-            hoverEnabled: true
-            Layout.fillHeight: true
-            Layout.minimumWidth: height
-            Layout.maximumWidth: height
-            // FIXME: Not using text with display because of RoundButton bugs in plasma-framework
-            // See https://bugs.kde.org/show_bug.cgi?id=440022
-            Accessible.name: i18n("Open user settings")
-            leftPadding: PlasmaCore.Units.devicePixelRatio
-            rightPadding: PlasmaCore.Units.devicePixelRatio
-            topPadding: PlasmaCore.Units.devicePixelRatio
-            bottomPadding: PlasmaCore.Units.devicePixelRatio
-            contentItem: Kirigami.Avatar {
-                source: kuser.faceIconUrl
-                name: kuser.fullName
-            }
-            Rectangle {
-                parent: avatar.background
-                anchors.fill: avatar.background
-                anchors.margins: -PlasmaCore.Units.devicePixelRatio
-                z: 1
-                radius: height/2
-                color: "transparent"
-                border.width: avatar.visualFocus ? PlasmaCore.Units.devicePixelRatio * 2 : 0
-                border.color: PlasmaCore.Theme.buttonFocusColor
-            }
-            HoverHandler {
-                id: hoverHandler
-                cursorShape: Qt.PointingHandCursor
-            }
-            PC3.ToolTip.text: Accessible.name
-            PC3.ToolTip.visible: hovered
-            PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
-
-            Keys.onLeftPressed: if (LayoutMirroring.enabled) {
-                searchField.forceActiveFocus(Qt.TabFocusReason)
-            }
-            Keys.onRightPressed: if (!LayoutMirroring.enabled) {
-                searchField.forceActiveFocus(Qt.TabFocusReason)
-            }
-            Keys.onDownPressed: if (plasmoid.rootItem.sideBar) {
-                plasmoid.rootItem.sideBar.forceActiveFocus(Qt.TabFocusReason)
-            } else {
-                plasmoid.rootItem.contentArea.forceActiveFocus(Qt.TabFocusReason)
-            }
-
-            onClicked: KQuickAddons.KCMShell.openSystemSettings("kcm_users")
-        }
-
-        MouseArea {
-            id: nameAndInfoMouseArea
-            hoverEnabled: true
-
-            Layout.fillHeight: true
+    ColumnLayout {
+        height: parent.height;
+        Layout.fillWidth: true
+        anchors.fill: parent
+        RowLayout {
+            id: nameAndIcon
+            anchors.left: parent.left
+            anchors.right: parent.right
+            spacing: root.spacing
+            height: parent.height / 4
+            width: root.preferredNameAndIconWidth
             Layout.fillWidth: true
+            PC3.RoundButton {
+                id: avatar
+                anchors.left : parent.left
+                Layout.alignment: Qt.AlignCenter
+                visible: KQuickAddons.KCMShell.authorize("kcm_users.desktop").length > 0
+                hoverEnabled: true
+                Layout.fillHeight: true
+                Layout.minimumWidth: height
+                Layout.maximumWidth: height 
+                // FIXME: Not using text with display because of RoundButton bugs in plasma-framework
+                // See https://bugs.kde.org/show_bug.cgi?id=440022
+                Accessible.name: i18n("Open user settings")
+                leftPadding: PlasmaCore.Units.devicePixelRatio
+                rightPadding: PlasmaCore.Units.devicePixelRatio
+                topPadding: PlasmaCore.Units.devicePixelRatio
+                bottomPadding: PlasmaCore.Units.devicePixelRatio
+                contentItem: Kirigami.Avatar {
+                    source: kuser.faceIconUrl
+                    name: kuser.fullName
+                }
+                Rectangle {
+                    parent: avatar.background
+                    anchors.fill: avatar.background
+                    anchors.margins: -PlasmaCore.Units.devicePixelRatio
+                    z: 1
+                    radius: nameAndIcon.height / 2
+                    color: "transparent"
+                    border.width: avatar.visualFocus ? PlasmaCore.Units.devicePixelRatio * 2 : 0
+                    border.color: PlasmaCore.Theme.buttonFocusColor
+                }
+                HoverHandler {
+                    id: hoverHandler
+                    cursorShape: Qt.PointingHandCursor
+                }
+                PC3.ToolTip.text: Accessible.name
+                PC3.ToolTip.visible: hovered
+                PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
 
-            PlasmaExtras.Heading {
-                id: nameLabel
-                anchors.fill: parent
-                opacity: parent.containsMouse ? 0 : 1
-                color: PlasmaCore.Theme.textColor
-                level: 4
-                text: kuser.fullName
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                Keys.onLeftPressed: if (LayoutMirroring.enabled) {
+                    searchField.forceActiveFocus(Qt.TabFocusReason)
+                }
+                Keys.onRightPressed: if (!LayoutMirroring.enabled) {
+                    searchField.forceActiveFocus(Qt.TabFocusReason)
+                }
+                Keys.onDownPressed: if (plasmoid.rootItem.sideBar) {
+                    plasmoid.rootItem.sideBar.forceActiveFocus(Qt.TabFocusReason)
+                } else {
+                    plasmoid.rootItem.contentArea.forceActiveFocus(Qt.TabFocusReason)
+                }
 
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: PlasmaCore.Units.longDuration
-                        easing.type: Easing.InOutQuad
+                onClicked: KQuickAddons.KCMShell.openSystemSettings("kcm_users")
+            }
+
+            MouseArea {
+                id: nameAndInfoMouseArea
+                hoverEnabled: true
+
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                PlasmaExtras.Heading {
+                    id: nameLabel
+                    anchors.fill: parent
+                    anchors.left: parent.right
+                    opacity: parent.containsMouse ? 0 : 1
+                    color: PlasmaCore.Theme.textColor
+                    level: 4
+                    text: kuser.fullName
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: PlasmaCore.Units.longDuration
+                            easing.type: Easing.InOutQuad
+                        }
                     }
                 }
-            }
 
-            PlasmaExtras.Heading {
-                id: infoLabel
-                anchors.fill: parent
-                level: 5
-                opacity: parent.containsMouse ? 1 : 0
-                color: PlasmaCore.Theme.textColor
-                text: kuser.os !== "" ? `${kuser.loginName}@${kuser.host} (${kuser.os})` : `${kuser.loginName}@${kuser.host}`
-                elide: Text.ElideRight
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                PlasmaExtras.Heading {
+                    id: infoLabel
+                    anchors.fill: parent
+                    level: 5
+                    anchors.left: parent.right
+                    opacity: parent.containsMouse ? 1 : 0
+                    color: PlasmaCore.Theme.textColor
+                    text: `${kuser.loginName}@${kuser.host}`
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignCenter
+                    verticalAlignment: Text.AlignVCenter
 
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: PlasmaCore.Units.longDuration
-                        easing.type: Easing.InOutQuad
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: PlasmaCore.Units.longDuration
+                            easing.type: Easing.InOutQuad
+                        }
                     }
                 }
-            }
 
-            PC3.ToolTip.text: infoLabel.text
-            PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
-            PC3.ToolTip.visible: infoLabel.truncated && containsMouse
-        }
-    }
-    RowLayout {
-        id: rowLayout
-        spacing: root.spacing
-        height: parent.height
-        anchors {
-            left: nameAndIcon.right
-            right: parent.right
-        }
-        Keys.onDownPressed: plasmoid.rootItem.contentArea.forceActiveFocus(Qt.TabFocusReason)
-
-        PC3.TextField {
-            id: searchField
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.fillWidth: true
-            Layout.leftMargin: plasmoid.rootItem.backgroundMetrics.leftPadding
-            focus: true
-            placeholderText: i18n("Search this computer…")
-            clearButtonShown: true
-            Accessible.editable: true
-            Accessible.searchEdit: true
-            inputMethodHints: Qt.ImhNoPredictiveText
-            Binding {
-                target: plasmoid.rootItem
-                property: "searchField"
-                value: searchField
+                PC3.ToolTip.text: infoLabel.text
+                PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
+                PC3.ToolTip.visible: infoLabel.truncated && containsMouse
             }
-            Connections {
-                target: plasmoid
-                function onExpandedChanged() {
-                    if(!plasmoid.expanded) {
-                        searchField.clear()
+        } 
+        RowLayout {
+            id: rowLayout
+            spacing: 2
+            height: (parent.height / 2) - (parent.height / 8)
+            Keys.onDownPressed: plasmoid.rootItem.contentArea.forceActiveFocus(Qt.TabFocusReason)
+            anchors.left : parent.left
+
+            PC3.TextField {
+                id: searchField
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.leftMargin: plasmoid.rootItem.backgroundMetrics.leftPadding
+                focus: true
+                implicitWidth: root.width * 0.9
+                anchors.left : configureButton.right
+                placeholderText: i18n("Search this computer…")
+                clearButtonShown: true
+                Accessible.editable: true
+                Accessible.searchEdit: true
+                inputMethodHints: Qt.ImhNoPredictiveText
+                Binding {
+                    target: plasmoid.rootItem
+                    property: "searchField"
+                    value: searchField                
+                }
+                Connections {
+                    target: plasmoid
+                    function onExpandedChanged() {
+                        if(!plasmoid.expanded) {
+                            searchField.clear()
+                        }
                     }
                 }
-            }
-            Shortcut {
-                sequence: StandardKey.Find
-                onActivated: {
+                Shortcut {
+                    sequence: StandardKey.Find
+                    onActivated: {
+                        searchField.forceActiveFocus(Qt.ShortcutFocusReason)
+                        searchField.selectAll()
+                    }
+                }
+                onTextEdited: {
                     searchField.forceActiveFocus(Qt.ShortcutFocusReason)
-                    searchField.selectAll()
+                }
+                onAccepted: {
+                    plasmoid.rootItem.contentArea.currentItem.action.triggered()
+                    plasmoid.rootItem.contentArea.currentItem.forceActiveFocus(Qt.ShortcutFocusReason)
+                }
+                Keys.priority: Keys.AfterItem
+                Keys.forwardTo: plasmoid.rootItem.contentArea.view
+                Keys.onLeftPressed: if (activeFocus) {
+                    if (LayoutMirroring.enabled) {
+                        nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
+                    } else {
+                        nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
+                    }
+                }
+                Keys.onRightPressed: if (activeFocus) {
+                    if (!LayoutMirroring.enabled) {
+                        nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
+                    } else {
+                        nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
+                    }
                 }
             }
-            onTextEdited: {
-                searchField.forceActiveFocus(Qt.ShortcutFocusReason)
-            }
-            onAccepted: {
-                plasmoid.rootItem.contentArea.currentItem.action.triggered()
-                plasmoid.rootItem.contentArea.currentItem.forceActiveFocus(Qt.ShortcutFocusReason)
-            }
-            Keys.priority: Keys.AfterItem
-            Keys.forwardTo: plasmoid.rootItem.contentArea.view
-            Keys.onLeftPressed: if (activeFocus) {
-                if (LayoutMirroring.enabled) {
+
+            PC3.ToolButton {
+                id: configureButton
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                visible: plasmoid.action("configure").enabled
+                icon.name: "configure"
+                anchors.left : parent.left
+                text: plasmoid.action("configure").text
+                display: PC3.ToolButton.IconOnly
+                Layout.minimumWidth: height
+                PC3.ToolTip.text: text
+                PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
+                PC3.ToolTip.visible: hovered
+                Keys.onLeftPressed: if (LayoutMirroring.enabled) {
+                    nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
+                } else {
+                    nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
+                }            Layout.fillWidth: true
+
+                Keys.onRightPressed: if (!LayoutMirroring.enabled) {
                     nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
                 } else {
                     nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
                 }
+                onClicked: plasmoid.action("configure").trigger()
             }
-            Keys.onRightPressed: if (activeFocus) {
-                if (!LayoutMirroring.enabled) {
-                    nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
+            PC3.ToolButton {
+                id: pinButton
+                checkable: true
+
+                checked: plasmoid.configuration.pin
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                icon.name: "window-pin"
+                text: i18n("Keep Open")
+                anchors.left: searchField.right
+                display: PC3.ToolButton.IconOnly
+                PC3.ToolTip.text: text
+                PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
+                PC3.ToolTip.visible: hovered
+                Binding {
+                    target: plasmoid
+                    property: "hideOnWindowDeactivate"
+                    value: !plasmoid.configuration.pin
+                }
+                KeyNavigation.backtab: configureButton
+                KeyNavigation.tab: if (plasmoid.rootItem.sideBar) {
+                    return plasmoid.rootItem.sideBar
                 } else {
+                    return nextItemInFocusChain()
+                }
+                Keys.onLeftPressed: if (!LayoutMirroring.enabled) {
                     nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
                 }
+                Keys.onRightPressed: if (LayoutMirroring.enabled) {
+                    nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
+                }
+                onToggled: plasmoid.configuration.pin = checked
             }
-        }
-
-        PC3.ToolButton {
-            id: configureButton
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            visible: plasmoid.action("configure").enabled
-            icon.name: "configure"
-            text: plasmoid.action("configure").text
-            display: PC3.ToolButton.IconOnly
-
-            PC3.ToolTip.text: text
-            PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
-            PC3.ToolTip.visible: hovered
-            Keys.onLeftPressed: if (LayoutMirroring.enabled) {
-                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
-            } else {
-                nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
-            }
-            Keys.onRightPressed: if (!LayoutMirroring.enabled) {
-                nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
-            } else {
-                nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
-            }
-            onClicked: plasmoid.action("configure").trigger()
-        }
-        PC3.ToolButton {
-            checkable: true
-            checked: plasmoid.configuration.pin
-            icon.name: "window-pin"
-            text: i18n("Keep Open")
-            display: PC3.ToolButton.IconOnly
-            PC3.ToolTip.text: text
-            PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
-            PC3.ToolTip.visible: hovered
-            Binding {
-                target: plasmoid
-                property: "hideOnWindowDeactivate"
-                value: !plasmoid.configuration.pin
-            }
-            KeyNavigation.backtab: configureButton
-            KeyNavigation.tab: if (plasmoid.rootItem.sideBar) {
-                return plasmoid.rootItem.sideBar
-            } else {
-                return nextItemInFocusChain()
-            }
-            Keys.onLeftPressed: if (!LayoutMirroring.enabled) {
-                nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
-            }
-            Keys.onRightPressed: if (LayoutMirroring.enabled) {
-                nextItemInFocusChain(false).forceActiveFocus(Qt.BacktabFocusReason)
-            }
-            onToggled: plasmoid.configuration.pin = checked
         }
     }
 }
