@@ -49,6 +49,7 @@ PlasmaExtras.PlasmoidHeading {
 
     PC3.TabBar {
         id: tabBar
+        currentIndex: 1
         property real tabWidth: Math.max(applicationsTab.implicitWidth, placesTab.implicitWidth)
         focus: true
         width: root.preferredTabBarWidth > 0 ? root.preferredTabBarWidth : implicitWidth
@@ -94,10 +95,9 @@ PlasmaExtras.PlasmoidHeading {
             }
             keyNavigationEnabled: false
         }
-
+      
         PC3.TabButton {
             id: applicationsTab
-            focus: true
             width: tabBar.tabWidth
             anchors.top: tabBarListView.contentItem.top
             anchors.bottom: tabBarListView.contentItem.bottom
@@ -107,6 +107,20 @@ PlasmaExtras.PlasmoidHeading {
             icon.height: PlasmaCore.Units.iconSizes.smallMedium
             icon.name: "applications-all"
             text: i18n("Applications")
+            KeyNavigation.backtab: plasmoid.rootItem.contentArea ? plasmoid.rootItem.contentArea : null
+        }
+        PC3.TabButton {
+            id: workspaceTab
+            focus: true
+            width: tabBar.tabWidth
+            anchors.top: tabBarListView.contentItem.top
+            anchors.bottom: tabBarListView.contentItem.bottom
+            anchors.topMargin: -root.topPadding
+            anchors.bottomMargin: -root.bottomPadding
+            icon.width: PlasmaCore.Units.iconSizes.smallMedium
+            icon.height: PlasmaCore.Units.iconSizes.smallMedium
+            icon.name: "app-launcher"
+            text: i18n("Workspaces") 
             KeyNavigation.backtab: plasmoid.rootItem.contentArea ? plasmoid.rootItem.contentArea : null
         }
         PC3.TabButton {

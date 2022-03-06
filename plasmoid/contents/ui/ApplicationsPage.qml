@@ -33,7 +33,6 @@ BasePage {
         readonly property Kicker.AppsModel appsModel: plasmoid.rootItem.rootModel.modelForRow(appsModelRow)
         focus: true
         initialItem: preferredFavoritesViewComponent
-
         Component {
             id: favoritesListViewComponent
             DropAreaListView {
@@ -112,12 +111,13 @@ BasePage {
         Connections {
             target: plasmoid
             function onExpandedChanged() {
-                if(!plasmoid.expanded) {
+                if(!plasmoid.expanded && plasmoid.rootItem.contentArea.currentItem !== undefined ) {
                     plasmoid.rootItem.contentArea.currentItem.forceActiveFocus()
                 }
             }
         }
     }
+    
     // NormalPage doesn't get destroyed when deactivated, so the binding uses
     // StackView.status and visible. This way the bindings are reset when
     // NormalPage is Activated again.

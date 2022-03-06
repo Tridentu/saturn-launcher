@@ -62,6 +62,7 @@ EmptyPage {
             restoreMode: Binding.RestoreBinding
         }
     }
+    
 
     contentItem: VerticalStackView {
         id: contentItemStackView
@@ -75,19 +76,14 @@ EmptyPage {
 
         Component {
             id: searchViewComponent
-            KickoffListView {
+            SearchView {
                 id: searchView
                 objectName: "searchView"
-                mainContentView: true
-                implicitWidth: normalPage.implicitWidth
+                implicitWidth: normalPage.implicitWidth 
                 implicitHeight: normalPage.implicitHeight
                 // Forces the function be re-run every time runnerModel.count changes.
                 // This is absolutely necessary to make the search view work reliably.
-                model: plasmoid.rootItem.runnerModel.count ? plasmoid.rootItem.runnerModel.modelForRow(0) : null
-                delegate: KickoffItemDelegate {
-                    width: view.availableWidth
-                    isSearchResult: true
-                }
+                
                 activeFocusOnTab: true
                 // always focus the first item in the header focus chain
                 KeyNavigation.tab: root.header.nextItemInFocusChain()

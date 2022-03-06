@@ -70,6 +70,10 @@ Item {
             }
 
             onClicked: {
+                if(modelData.onAction !== undefined){
+                    modelData.onAction()
+                    return
+                }
                 const modelActionTriggered = Tools.triggerAction(
                     menu.visualParent.view.model,
                     menu.visualParent.index,

@@ -16,10 +16,18 @@ EmptyPage {
     contentItem: HorizontalStackView {
         id: stackView
         focus: true
-        reverseTransitions: footer.tabBar.currentIndex === 1
+        reverseTransitions: footer.tabBar.currentIndex === 2
         initialItem: ApplicationsPage {
-            id: applicationsPage
-            preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+                id: applicationsPage
+                preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+
+            }
+        
+        Component {
+            id: workspacePage
+            HomePage {
+                preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+            }
         }
         Component {
             id: placesPage
@@ -31,9 +39,11 @@ EmptyPage {
         Connections {
             target: footer.tabBar
             function onCurrentIndexChanged() {
-                if (footer.tabBar.currentIndex === 0) {
+                if (footer.tabBar.currentIndex === 1) {
+                    stackView.replace(workspacePage)
+                } else if (footer.tabBar.currentIndex == 0){
                     stackView.replace(applicationsPage)
-                } else if (footer.tabBar.currentIndex === 1) {
+                } else if (footer.tabBar.currentIndex === 2) {
                     stackView.replace(placesPage)
                 }
             }

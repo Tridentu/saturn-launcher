@@ -41,6 +41,8 @@ Item {
         imagePath: "widgets/arrows"
     }
     //END
+    
+
 
     //BEGIN Metrics
     readonly property PlasmaCore.FrameSvgItem listItemMetrics: PlasmaCore.FrameSvgItem {

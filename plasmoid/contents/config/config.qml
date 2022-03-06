@@ -14,4 +14,10 @@ PlasmaConfig.ConfigModel {
         icon: "preferences-desktop-plasma"
         source: "ConfigGeneral.qml"
     }
+    
+    PlasmaConfig.ConfigCategory {
+        name: i18n("Workspaces")
+        icon: "app-launcher"
+        source: "ConfigHomeTab.qml"
+    }
 }

@@ -22,7 +22,7 @@ ColumnLayout {
     property var cfg_systemFavorites: String(plasmoid.configuration.systemFavorites)
     property int cfg_primaryActions: plasmoid.configuration.primaryActions
     property alias cfg_showActionButtonCaptions: showActionButtonCaptions.checked
-    property alias cfg_showCaravel: showCaravel.checked
+    property int cfg_recentOrdering: plasmoid.configuration.recentOrdering
 
     Kirigami.FormLayout {
         Button {
@@ -82,12 +82,6 @@ ColumnLayout {
         CheckBox {
             id: alphaSort
             text: i18n("Always sort applications alphabetically")
-        }
-
-
-        CheckBox {
-            id: showCaravel
-            text: i18n("Show Caravel tab in places")
         }
 
 
@@ -171,6 +165,28 @@ ColumnLayout {
             id: showActionButtonCaptions
             text: i18n("Show action button captions")
         }
+        
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+        
+         RadioButton {
+            id: recentFirstButton
+            Kirigami.FormData.label: i18n("Sort applications by:")
+            text: i18n("Recent Apps")
+            ButtonGroup.group: recentOrderingGroup
+            property int index: 0
+            checked: plasmoid.configuration.recentOrdering == index
+        }
+
+        RadioButton {
+            id: popularFirstButton
+            text: i18n("Frequent Apps")
+            ButtonGroup.group: recentOrderingGroup
+            property int index: 1
+            checked: plasmoid.configuration.recentOrdering == index
+        }
+        
     }
 
     ButtonGroup {
@@ -200,6 +216,15 @@ ColumnLayout {
             }
         }
     }
+    
+     ButtonGroup {
+        id: recentOrderingGroup
+        onCheckedButtonChanged: {
+            if(checkedButton) {
+                cfg_recentOrdering = checkedButton.index
+            }
+        }
+    }  
 
     Item {
         Layout.fillHeight: true

@@ -12,6 +12,7 @@ import org.kde.plasma.components 3.0 as PC3
 
 BasePage {
     id: root
+    property bool showCaravel: plasmoid.configuration.showCaravel
     sideBarComponent: KickoffListView {
         id: sideBar
         focus: true // needed for Loaders
@@ -46,8 +47,8 @@ BasePage {
         ListElement { display: "Computer"; decoration: "computer" }
         ListElement { display: "History"; decoration: "view-history" }
         ListElement { display: "Frequently Used"; decoration: "clock" }
-        ListElement { display: "Caravel"; decoration: "/usr/share/distro-data/tridentur.png" }
-
+        ListElement { display: "Caravel"; decoration: "/usr/share/distro-data/tridentur.png"; }
+        
         Component.onCompleted: {
             // Can't use a function in a QML ListElement declaration
             placesCategoryModel.setProperty(0, "display", i18nc("category in Places sidebar", "Computer"))
@@ -55,14 +56,12 @@ BasePage {
             placesCategoryModel.setProperty(2, "display", i18nc("category in Places sidebar", "Frequently Used"))
             placesCategoryModel.setProperty(3, "display", i18nc("category in Places sidebar", "Caravel"))
 
-            placesCategoryModel.setProperty(3, "visible", plasmoid.configuration.showCaravel);
-            placesCategoryModel.setProperty(3, "visibleChildren", plasmoid.configuration.showCaravel);
-
             if (KickoffSingleton.powerManagement.data["PowerDevil"]
                 && KickoffSingleton.powerManagement.data["PowerDevil"]["Is Lid Present"]) {
                 placesCategoryModel.setProperty(0, "decoration", "computer-laptop")
             }
         }
+        
     }
     // NormalPage doesn't get destroyed when deactivated, so the binding uses
     // StackView.status and visible. This way the bindings are reset when
@@ -74,6 +73,7 @@ BasePage {
         when: root.T.StackView.status === T.StackView.Active && root.visible
         restoreMode: Binding.RestoreBinding
     }
+  
     Binding {
         target: plasmoid.rootItem
         property: "contentArea"

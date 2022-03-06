@@ -37,13 +37,18 @@
             <label>How to display applications: 0 = Grid, 1 = List</label>
             <default>1</default>
         </entry>
+        <entry name="appAreaWidth" type="Int">
+            <label>Width of the area.</label>
+            <default>350</default>
+        </entry>
+        <entry name="tileMargin" type="int">
+            <label>The margin amount of the tiles in Workspace.</label>
+            <default>5</default>
+        </entry>
+        
         <entry name="alphaSort" type="Bool">
             <label>Whether to sort menu contents alphabetically or use manual/system sort order.</label>
             <default>false</default>
-        </entry>
-        <entry name="showCaravel" type="Bool">
-            <label>Whether to display the Caravel tab (in "Places").</label>
-            <default>true</default>
         </entry>
         <entry name="pin" type="Bool">
             <label>Whether the popup should remain open when another window is activated</label>
@@ -51,7 +56,28 @@
         </entry>
         <entry name="showActionButtonCaptions" type="Bool">
             <label>Whether to display captions ("shut down", "log out", etc.) for the footer action buttons</label>
-            <default>true</default>
+            <default>false</default>
+        </entry>
+        <entry name="recentOrdering" type="Int">
+			<label>How should the previously used apps/docs/contacts be ordered: 0 = RecentFirst, 1 = PopularFirst</label>
+			<default>1</default>
+		</entry>
+        <entry name="defaultTileGradient" type="Bool">
+			<default>false</default>
+		</entry>
+        <entry name="tilesLocked" type="Bool">
+			<default>false</default>
+        </entry>
+        <entry name="tileLabelAlignment" type="Int">
+			<!-- enum: left, center, right -->
+			<default>0</default>
+		</entry>
+        <entry name="tileModel" type="string" stringType="base64json">
+            <default></default>
+        </entry>
+        <entry name="tileScale" type="double">
+            <label>The scale of the tiles in Workspace.</label>
+            <default>0.8</default>
         </entry>
     </group>
 </kcfg>

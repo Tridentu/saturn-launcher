@@ -26,6 +26,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Templates 2.15 as T
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PC3
+import org.kde.plasma.components 2.0 as PC2
 import org.kde.kirigami 2.16 as Kirigami
 import "code/tools.js" as Tools
 
@@ -46,7 +47,8 @@ T.ItemDelegate {
     property var actionList: null
     property bool isSearchResult: false
     readonly property bool menuClosed: ActionMenu.menu.status == 3 // corresponds to DialogStatus.Closed
-
+    property var tileGrid: null
+    
     property bool dragEnabled: enabled && !root.isCategory
         && plasmoid.immutability !== PlasmaCore.Types.SystemImmutable
 
@@ -78,12 +80,14 @@ T.ItemDelegate {
         }
     }
 
+
+
     // The default Z value for delegates is 1. The default Z value for the section delegate is 2.
     // The highlight gets a value of 3 while the drag is active and then goes back to the default value of 0.
     z: Drag.active ? 4 : 1
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                            implicitContentWidth + leftPadding + rightPadding)
+                            implicitContentWidth + leftPadding + rightPadding) 
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
@@ -157,29 +161,13 @@ T.ItemDelegate {
         }
     }
 
-    PC3.Label {
-        id: descriptionLabel
-        parent: root
-        anchors {
-            left: root.contentItem.left
-            right: root.contentItem.right
-            baseline: root.contentItem.baseline
-            leftMargin: root.textUnderIcon ? 0 : root.implicitContentWidth + root.spacing
-            baselineOffset: root.textUnderIcon ? implicitHeight : 0
-        }
-        visible: !textUnderIcon && text.length > 0 && text !== root.text && label.lineCount === 1
-        enabled: false
-        text: root.description
-        elide: Text.ElideRight
-        horizontalAlignment: root.textUnderIcon ? Text.AlignHCenter : Text.AlignRight
-        verticalAlignment: root.textUnderIcon ? Text.AlignTop : Text.AlignVCenter
-        maximumLineCount: 1
-    }
 
     Drag.active: mouseArea.drag.active
     Drag.dragType: Drag.Automatic
     Drag.mimeData: { "text/uri-list" : root.url }
     Drag.onDragFinished: Drag.imageSource = ""
+    
+    
 
     MouseArea {
         id: mouseArea
@@ -231,29 +219,25 @@ T.ItemDelegate {
         onClicked: if (mouse.button === Qt.LeftButton) {
             root.action.trigger()
         }
-        onPressAndHold: if (mouse.button === Qt.LeftButton) {
-            /* TODO: make press and hold to open menu exclusive to touch.
-             * I (ndavis) tried `if (lastDeviceType & ~(PointerDevice.Mouse | PointerDevice.TouchPad))`
-             * with a TapHandler. lastDeviceType was gotten from the EventPoint argument of the
-             * grabChanged() signal. ngraham said it wouldn't work because it was preventing single
-             * taps on touch. I didn't have a touch screen to test it with.
-             *
-             * TODO: find a good way to expose the context menu to touch input that doesn't conflict with
-             * flick to scroll or drag to reorder act like right click on press and hold (with touch).
-             */
-            root.openActionMenu(mouseX, mouseY)
+        onPressAndHold: {
+            if (mouse.button === Qt.LeftButton) {
+                /* TODO: make press and hold to open menu exclusive to touch.
+                * I (ndavis) tried `if (lastDeviceType & ~(PointerDevice.Mouse | PointerDevice.TouchPad))`
+                * with a TapHandler. lastDeviceType was gotten from the EventPoint argument of the
+                * grabChanged() signal. ngraham said it wouldn't work because it was preventing single
+                * taps on touch. I didn't have a touch screen to test it with.
+                *
+                * TODO: find a good way to expose the context menu to touch input that doesn't conflict with
+                * flick to scroll or drag to reorder act like right click on press and hold (with touch).
+                */
+                root.openActionMenu(mouseX, mouseY)
+            }
         }
     }
 
     PC3.ToolTip.text: {
-        if (label.truncated && descriptionLabel.truncated) {
-            return `${text} (${description})`
-        } else if (descriptionLabel.truncated) {
-            return description
-        } else {
-            return text
-        }
+        return description
     }
-    PC3.ToolTip.visible: mouseArea.containsMouse && ((label.visible && label.truncated) || (descriptionLabel.visible && descriptionLabel.truncated))
+    PC3.ToolTip.visible: mouseArea.containsMouse && !root.isCategory
     PC3.ToolTip.delay: Kirigami.Units.toolTipDelay
 }
