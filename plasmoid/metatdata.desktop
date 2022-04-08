@@ -7,7 +7,7 @@ Icon=/usr/share/distro-data/tridentur.png
 
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-Name=io.github.tridentu.saturn
-X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Version=0.6
 X-KDE-PluginInfo-Website=tridentu.github.io/saturn-launcher
 X-KDE-ServiceTypes=Plasma/Applet
 X-KDE-PluginInfo-Category=Application Launchers
