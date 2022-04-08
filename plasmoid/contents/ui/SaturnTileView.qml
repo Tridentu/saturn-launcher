@@ -17,6 +17,7 @@ import "code/tools.js" as Tools
             property int scrollAreaTickInterval: 200
             property int scrollAreaSize: Math.min(cellBoxSize * 1.5, scrollView.height / 5) // 20vh or 90pt
             property bool mainContentView: true
+            property int workspaceId: 0
                             
             property int cellSize: 60 * PlasmaCore.Units.devicePixelRatio
             property real cellMargin: 3 * PlasmaCore.Units.devicePixelRatio
@@ -354,7 +355,15 @@ import "code/tools.js" as Tools
                         urlList.push(tile.url)
                     }
                 }
-                plasmoid.rootItem.tileModel.value = tileModel
+                if(workspaceId <= 0){
+                    plasmoid.rootItem.tileModel.value = tileModel
+                } else {
+                    var workspaces = plasmoid.rootItem.workspaceModel.value
+                    workspaces[workspaceId - 1].tileModel = tileModel;
+                   workspaces[workspaceId - 1].active = true;
+                }
+                
+                
                 tileGridModel.favorites = urlList
                 updateSize()
             }

@@ -574,6 +574,58 @@ Item {
 		defaultValue: []
     }
     
+    property var workspaceModel: Base64JsonString {
+		configKey: 'workspaceModel'
+		defaultValue: [
+          {
+            active: false,
+            tileModel: []
+          },
+          {
+            active: false,
+            tileModel: []
+
+          },
+          {
+            active: false,
+            tileModel: []
+
+          },
+          {
+            active: false,
+            tileModel: []
+
+          },
+          {
+            active: false,
+            tileModel: []
+
+          },
+          {
+            active: false,
+            tileModel: []
+
+          },
+          {
+            active: false,
+            tileModel: []
+
+          }
+        ]
+    }
+    
+    
+    property int currentWorkspace: 2
+    
+    readonly property int workspaceIndex: currentWorkspace - 2
+    
+    function activateWorkspace(index){
+        
+    }
+    
+    
+    
+    
     
 
     Component.onCompleted: {

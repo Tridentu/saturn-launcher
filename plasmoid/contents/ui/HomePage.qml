@@ -18,8 +18,25 @@ BasePage {
             description: ""
             width: view.availableWidth
             isCategory: true
+            onViewSelected: {
+                openWorkspace(index)
+            }
         }
     }
+    
+    property var saturnTileGrid: undefined;
+    
+      function openWorkspace(index){
+           saturnTileGrid.workspaceId = index
+            if(index <= 0){
+                saturnTileGrid.tileModel = plasmoid.rootItem.tileModel.value
+            } else {
+                if(plasmoid.rootItem.workspaceModel.value) {
+                    var tileGroup = plasmoid.rootItem.workspaceModel.value[index - 1];
+                    saturnTileGrid.tileModel = tileGroup.tileModel
+                }
+            }
+        }
     
     contentAreaComponent: EmptyPage {
         id: contentArea
@@ -35,18 +52,34 @@ BasePage {
                 id: saveTimer
             
                 interval: 2000
-                onTriggered: tileModel.save()
+                onTriggered: {
+                    if (tileGrid.workspaceId <= 0){
+                        tileModel.save();
+                    } else {
+                        plasmoid.rootItem.workspaceModel.save()
+                    }
+                }
             }
             onTileModelChanged: saveTimer.restart()
+            Component.onCompleted: {
+                saturnTileGrid = tileGrid;
+            }
         }
     }
     
     ListModel {
         id: workspaceModel
-        ListElement { display: "Workspace 1"; decoration: "workspace" }
-        ListElement { display: "Workspace 2"; decoration: "workspace" }
-        ListElement { display: "Workspace 3"; decoration: "workspace" }
-        ListElement { display: "Workspace 4"; decoration: "workspace" }
+        
+      
+        
+        ListElement { display: "Workspace 1"; decoration: "workspace"; }
+        ListElement { display: "Workspace 2"; decoration: "workspace"; }
+        ListElement { display: "Workspace 3"; decoration: "workspace";  }
+        ListElement { display: "Workspace 4"; decoration: "workspace"; }
+        ListElement { display: "Workspace 5"; decoration: "workspace"; }
+        ListElement { display: "Workspace 6"; decoration: "workspace";  }
+        ListElement { display: "Workspace 7"; decoration: "workspace";  }
+        ListElement { display: "Workspace 8"; decoration: "workspace";  }
 
         Component.onCompleted: {
             // Can't use a function in a QML ListElement declaration
@@ -54,6 +87,10 @@ BasePage {
             workspaceModel.setProperty(1, "display", i18nc("workspace in Home sidebar", "Workspace 2"))
             workspaceModel.setProperty(2, "display", i18nc("workspace in Home sidebar", "Workspace 3"))
             workspaceModel.setProperty(3, "display", i18nc("workspace in Home sidebar", "Workspace 4"))
+            workspaceModel.setProperty(4, "display", i18nc("workspace in Home sidebar", "Workspace 5"))
+            workspaceModel.setProperty(5, "display", i18nc("workspace in Home sidebar", "Workspace 6"))
+            workspaceModel.setProperty(6, "display", i18nc("workspace in Home sidebar", "Workspace 7"))
+            workspaceModel.setProperty(7, "display", i18nc("workspace in Home sidebar", "Workspace 8"))
 
         }
     }

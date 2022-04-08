@@ -75,6 +75,9 @@
         <entry name="tileModel" type="string" stringType="base64json">
             <default></default>
         </entry>
+        <entry name="workspaceModel" type="string" stringType="base64json">
+            <default></default>
+        </entry>
         <entry name="tileScale" type="double">
             <label>The scale of the tiles in Workspace.</label>
             <default>0.8</default>

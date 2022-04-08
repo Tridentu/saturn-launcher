@@ -128,8 +128,13 @@ T.ItemDelegate {
                     plasmoid.expanded = false;
                 }
             }
+            root.viewSelected(index);
         }
     }
+    
+    signal viewSelected(int index);
+    
+    
 
     background: null
     contentItem: GridLayout {

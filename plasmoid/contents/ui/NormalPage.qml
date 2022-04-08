@@ -19,20 +19,20 @@ EmptyPage {
         reverseTransitions: footer.tabBar.currentIndex === 2
         initialItem: ApplicationsPage {
                 id: applicationsPage
-                preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+                preferredSideBarWidth: root.preferredSideBarWidth 
 
             }
         
         Component {
             id: workspacePage
             HomePage {
-                preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+                preferredSideBarWidth: root.preferredSideBarWidth 
             }
         }
         Component {
             id: placesPage
             PlacesPage {
-                preferredSideBarWidth: root.preferredSideBarWidth + plasmoid.rootItem.backgroundMetrics.leftPadding
+                preferredSideBarWidth: root.preferredSideBarWidth 
                 preferredSideBarHeight: applicationsPage.implicitSideBarHeight
             }
         }

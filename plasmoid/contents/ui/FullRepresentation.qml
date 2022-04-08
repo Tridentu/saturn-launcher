@@ -25,6 +25,7 @@ EmptyPage {
     topPadding: 0
     bottomPadding: -plasmoid.rootItem.backgroundMetrics.bottomPadding
 
+    
     Layout.minimumWidth: implicitWidth
     Layout.minimumHeight: implicitHeight
 
