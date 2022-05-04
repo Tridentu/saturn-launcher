@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Saturn Launcher Blog</title>
-        <link>https://tridentu.github.io/saturn-launcher/blog</link>
+        <link>https://tridentu.github.io/blog</link>
         <description>Saturn Launcher Blog</description>
         <lastBuildDate>Wed, 04 May 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,7 +10,7 @@
         <language>en</language>
         <item>
             <title><![CDATA[Welcome to the Saturn Launcher site!]]></title>
-            <link>https://tridentu.github.io/saturn-launcher/blog/welcome</link>
+            <link>https://tridentu.github.io/blog/welcome</link>
             <guid>welcome</guid>
             <pubDate>Wed, 04 May 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[This is the Saturn Launcher documentation site. It was created for documenting the core features of the Launcher, but also for changelogs as well.]]></description>
