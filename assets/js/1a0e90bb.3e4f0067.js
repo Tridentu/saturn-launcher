@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksaturn_launcher_docs=self.webpackChunksaturn_launcher_docs||[]).push([[133],{611:function(a){a.exports=JSON.parse('{"allTagsPath":"/saturn-launcher/blog/tags","name":"tridentu","count":1,"permalink":"/saturn-launcher/blog/tags/tridentu"}')}}]);

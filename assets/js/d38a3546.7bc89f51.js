@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksaturn_launcher_docs=self.webpackChunksaturn_launcher_docs||[]).push([[665],{8118:function(e){e.exports=JSON.parse('{"permalink":"/saturn-launcher/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
