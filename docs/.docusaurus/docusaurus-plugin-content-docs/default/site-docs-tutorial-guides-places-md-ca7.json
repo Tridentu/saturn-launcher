@@ -1,0 +1,26 @@
+{
+  "unversionedId": "tutorial-guides/places",
+  "id": "tutorial-guides/places",
+  "title": "Places View",
+  "description": "Saturn Launcher also can remember your recently used for favorite shortcuts/applications.",
+  "source": "@site/docs/tutorial-guides/places.md",
+  "sourceDirName": "tutorial-guides",
+  "slug": "/tutorial-guides/places",
+  "permalink": "/docs/tutorial-guides/places",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-guides/places.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Tiles and Tile Groups",
+    "permalink": "/docs/tutorial-guides/tiles"
+  },
+  "next": {
+    "title": "Congratulations!",
+    "permalink": "/docs/tutorial-guides/congratulations"
+  }
+}

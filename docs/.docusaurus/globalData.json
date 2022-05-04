@@ -1,0 +1,75 @@
+{
+  "docusaurus-lunr-search": {
+    "default": {
+      "fileNames": {
+        "searchDoc": "search-doc-1651690506483.json",
+        "lunrIndex": "lunr-index-1651690506483.json"
+      }
+    }
+  },
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-extras/customization",
+              "path": "/docs/tutorial-extras/customization",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-extras/searching",
+              "path": "/docs/tutorial-extras/searching",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-guides/applications",
+              "path": "/docs/tutorial-guides/applications",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-guides/congratulations",
+              "path": "/docs/tutorial-guides/congratulations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-guides/places",
+              "path": "/docs/tutorial-guides/places",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-guides/tiles",
+              "path": "/docs/tutorial-guides/tiles",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-guides/workspaces",
+              "path": "/docs/tutorial-guides/workspaces",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "tridentu": {
+    "allTagsPath": "/blog/tags",
+    "name": "tridentu",
+    "count": 1,
+    "permalink": "/blog/tags/tridentu"
+  },
+  "hello": {
+    "allTagsPath": "/blog/tags",
+    "name": "hello",
+    "count": 1,
+    "permalink": "/blog/tags/hello"
+  }
+}

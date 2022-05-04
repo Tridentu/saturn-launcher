@@ -1,0 +1,6 @@
+{
+  "plugin": {
+    "name": "docusaurus-lunr-search",
+    "id": "default"
+  }
+}
