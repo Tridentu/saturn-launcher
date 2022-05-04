@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://tridentu.github.io/saturn-launcher/blog</id>
+    <title>Saturn Launcher Blog</title>
+    <updated>2022-05-04T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://tridentu.github.io/saturn-launcher/blog"/>
+    <subtitle>Saturn Launcher Blog</subtitle>
+    <icon>https://tridentu.github.io/saturn-launcher/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome to the Saturn Launcher site!]]></title>
+        <id>welcome</id>
+        <link href="https://tridentu.github.io/saturn-launcher/blog/welcome"/>
+        <updated>2022-05-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This is the Saturn Launcher documentation site. It was created for documenting the core features of the Launcher, but also for changelogs as well.]]></summary>
+        <content type="html"><![CDATA[<p>This is the Saturn Launcher documentation site. It was created for documenting the core features of the Launcher, but also for changelogs as well.</p><h2 class="anchor anchorWithStickyNavbar_mojV" id="what-about-the-tridentu-rk-manual">What about the Tridentu-RK Manual?<a class="hash-link" href="#what-about-the-tridentu-rk-manual" title="Direct link to heading">​</a></h2><p>The manual was only meant for KDE-compatible systems and Tridentu-RK. However, the website is for general use (mainly <strong>OUTSIDE</strong> the Tridentu-RK ecosystem).</p><h2 class="anchor anchorWithStickyNavbar_mojV" id="what-can-be-expected-from-this-site">What can be expected from this site?<a class="hash-link" href="#what-can-be-expected-from-this-site" title="Direct link to heading">​</a></h2><p>The following is to be seen on this site:</p><ul><li>Blog posts that act as changelogs for the site and the launcher itself</li><li>Documentation that can be accessed from anywhere</li></ul>]]></content>
+        <author>
+            <name>Weldon Henson</name>
+            <uri>https://github.com/Aerodos12</uri>
+        </author>
+        <category label="tridentu" term="tridentu"/>
+        <category label="hello" term="hello"/>
+    </entry>
+</feed>

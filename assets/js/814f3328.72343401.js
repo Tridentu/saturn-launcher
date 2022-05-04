@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksaturn_launcher_docs=self.webpackChunksaturn_launcher_docs||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Welcome to the Saturn Launcher site!","permalink":"/blog/welcome"}]}')}}]);
